@@ -12,15 +12,14 @@ typedef class GridNode* GridNodePtr;
 class GridNode
 {
 public:
+    GridNode(){};
     GridNode(Status st)
     {
         status = st;
-        comeFrom = nullptr;
     };
 public: 
     Status status;
     Vector3i index;
-    GridNodePtr comeFrom;
-    bool isObs;
+    //GridNodePtr comeFrom;
 };
 } // namespace UV
