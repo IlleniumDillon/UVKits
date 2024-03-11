@@ -4,21 +4,28 @@
 // #include <Eigen/StdVector>
 #include <iostream>
 #include <vector>
+#include "GridNode.hpp"
+
+namespace UV
+{
+
 
 class Node_Info
 {
-    Node_Info(double x_, double y_):x(x),y(y){}
+public:
+    Node_Info(double x_, double y_):x(x),y(y),z(z){}
     double x = 0;
     double y = 0;
+    double z = 0;
 };
 
-class RRT_Node
+class RRT_Node 
 {
 public:
     RRT_Node* fatherPtr = nullptr;
     Node_Info data;
 
-    RRT_Node(Node_Info data_, RRT_Node* father_ptr);
+    RRT_Node(Node_Info data_, RRT_Node* father_ptr):fatherPtr(father_ptr),data(data_){}
 //是否将Info变为private，使用eigen
 };
 
@@ -29,6 +36,11 @@ public:
     RRT_Node* goal_node;
     std::vector<RRT_Node*> node_list;
     double step_size;
+    
+    //下右上xyz
+    int mapLength=10,mapWidth=10,mapHight=1;
+    double scaleLenth=1,scaleWidth=1,scaleHight=1;
+    uint8_t* mapData=nullptr;
 
     RRT();
     RRT_Node* Sample();
@@ -41,3 +53,6 @@ public:
     std::vector<RRT_Node*> Planning();
 
 };
+
+}
+
