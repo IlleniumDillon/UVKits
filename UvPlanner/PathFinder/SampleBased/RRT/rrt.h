@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 #include "GridNode.hpp"
-
+#include "raycast.h"
 namespace UV
 {
 
@@ -38,8 +38,8 @@ public:
     double step_size;
     
     //下右上xyz
-    int mapLength=10,mapWidth=10,mapHight=1;
-    double scaleLenth=1,scaleWidth=1,scaleHight=1;
+    int mapX=10,mapY=10,mapZ=1;
+    double scaleX=1,scaleY=1,scaleZ=0;
     uint8_t* mapData=nullptr;
 
     RRT();
