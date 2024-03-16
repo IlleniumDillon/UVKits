@@ -4,6 +4,7 @@
 #include <vector>
 #include <cmath>
 #include "GridNode.hpp"
+#include "rrt.h"
 
 using std::min;
 using std::max;

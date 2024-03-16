@@ -1,7 +1,7 @@
 #ifndef RAYCAST_H_
 #define RAYCAST_H_
 
-#include <Eigen/Eigen>
+#include <eigen3/Eigen/Eigen>
 #include <vector>
 
 double signum(double x);
