@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <eigen3/Eigen/Eigen>
-#include "raycast.h"
+// #include "raycast.h"
 #include <random>
 
 using namespace Eigen;
@@ -90,6 +90,8 @@ public:
     Vector3d rviz2map(const Vector3d& pt) const;
 
 };
+
+
 
 }
 

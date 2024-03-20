@@ -1,6 +1,31 @@
 #include "rrt.h"
 namespace UV
 {
+int signum(int x)
+{
+    return x == 0 ? 0 : x < 0 ? -1
+                              : 1;
+}
+
+double mod(double value, double modulus)
+{
+    return fmod(fmod(value, modulus) + modulus, modulus);
+}
+
+double intbound(double s, double ds)
+{
+    // Find the smallest positive t such that s+t*ds is an integer.
+    if (ds < 0)
+    {
+        return intbound(-s, -ds);
+    }
+    else
+    {
+        s = mod(s, 1);
+        // problem is now s+t*ds = 1
+        return (1 - s) / ds;
+    }
+}
 
 void RRT::SetMap(double _resolution, int max_x_id, int max_y_id, int max_z_id,Vector3d _origin)
 {
