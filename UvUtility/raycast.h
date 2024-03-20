@@ -4,7 +4,7 @@
 #include <eigen3/Eigen/Eigen>
 #include <vector>
 
-double signum(double x);
+int signum(int x);
 
 double mod(double value, double modulus);
 
