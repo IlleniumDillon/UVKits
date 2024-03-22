@@ -23,23 +23,26 @@ namespace UV
 //     double z = 0;
 // };
 
-class RRT_Node 
+class RRT_STAR_Node 
 {
 public:
-    RRT_Node* fatherPtr = nullptr;
+    RRT_STAR_Node* fatherPtr = nullptr;
     Vector3d data;
+    double cost;
 
-    RRT_Node(Vector3d data_, RRT_Node* father_ptr = nullptr):fatherPtr(father_ptr),data(data_){}
-//是否将Info变为private，使用eigen
+    RRT_STAR_Node(Vector3d data_, RRT_STAR_Node* father_ptr = nullptr,double cost_ = 0):fatherPtr(father_ptr),data(data_),cost(cost_){}
+
 };
 
-class RRT
+class RRT_STAR
 {
 public:
     Vector3d start_data;
     Vector3d goal_data;
-    std::vector<RRT_Node*> node_list;
+    std::vector<RRT_STAR_Node*> node_list;
+
     double step_size = 0.5;
+    double optimal = 1;
     
     //下右上xyz
     Vector3d origin;
@@ -59,10 +62,7 @@ public:
     std::uniform_real_distribution<double> y_dis;
     std::uniform_real_distribution<double> z_dis;
 
-
-
-
-    // RRT(double step_size_ = 0.5, int goal_sample_rate_ = 5)  // 障碍物，步长（节点之间的距离），目标采样率（有多少概率直接采样到目标点）
+    // RRT_STAR(double step_size_ = 0.5, int goal_sample_rate_ = 5)  // 障碍物，步长（节点之间的距离），目标采样率（有多少概率直接采样到目标点）
     //   : step_size(step_size_),
     //     goal_sample_rate(goal_sample_rate_),
     //     goal_gen(std::random_device{}()),
@@ -71,18 +71,18 @@ public:
     //     y_dis(std::uniform_real_distribution<double>(0, mapY*resolution)),
     //     z_dis(std::uniform_real_distribution<double>(0, mapZ*resolution))      
     //     {
-    //         // RRT_Node* start_node = new RRT_Node(start_data);
+    //         // RRT_STAR_Node* start_node = new RRT_STAR_Node(start_data);
     //         // node_list.push_back(start_node);
     //     }
 
     void SetMap(double _resolution, int max_x_id, int max_y_id, int max_z_id,Vector3d _origin);
     void ResetRRT(Vector3d start, Vector3d goal);
-    RRT_Node* Sample();
-    RRT_Node* Near(RRT_Node* x_rand);
-    RRT_Node* Step(RRT_Node* x_rand, RRT_Node* x_near);
-    bool CollisionFree( RRT_Node* x_near,RRT_Node* x_new);
-    void AddNode(RRT_Node* x_new, RRT_Node* x_father);
-    bool SuccessCheck(RRT_Node* x_new);
+    RRT_STAR_Node* Sample();
+    RRT_STAR_Node* Near(RRT_STAR_Node* x_rand);
+    RRT_STAR_Node* Step(RRT_STAR_Node* x_rand, RRT_STAR_Node* x_near);
+    bool CollisionFree( RRT_STAR_Node* x_near,RRT_STAR_Node* x_new);
+    void AddNode(RRT_STAR_Node* x_new, RRT_STAR_Node* x_father);
+    bool SuccessCheck(RRT_STAR_Node* x_new);
 
     std::vector<Vector3d> Planning();
 
@@ -93,8 +93,9 @@ public:
     double res_distance(double p,double direction);
     void fixInMap(Eigen::Vector3d& new_node);
 
-
 };
+
+
 
 }
 
