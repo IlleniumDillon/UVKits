@@ -18,7 +18,7 @@ find_package(Python3 COMPONENTS Development NumPy)
 
 include_directories(UvUtility UvTaskAllocator UvMap UvPlanner/PathFinder)
 
-add_executable(testVisual testVisual.cpp)
-target_include_directories(testVisual PRIVATE ${Python2_INCLUDE_DIRS} ${Python2_NumPy_INCLUDE_DIRS} lib)
-target_link_libraries(testVisual Python3::Python Python3::NumPy)
-target_link_libraries(testVisual PathFinder UvUtility)
+# add_executable(testVisual testVisual.cpp)
+# target_include_directories(testVisual PRIVATE ${Python2_INCLUDE_DIRS} ${Python2_NumPy_INCLUDE_DIRS} lib)
+# target_link_libraries(testVisual Python3::Python Python3::NumPy)
+# target_link_libraries(testVisual PathFinder UvUtility)
