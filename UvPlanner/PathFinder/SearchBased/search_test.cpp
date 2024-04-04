@@ -43,7 +43,7 @@ int main()
     }
 
     Mat show;
-    cv::resize(gridMap,show,cv::Size(640,1280),0,0,cv::INTER_NEAREST);
+    cv::resize(gridMap,show,cv::Size(400,800),0,0,cv::INTER_NEAREST);
 
     cv::imshow("res",show);
 
